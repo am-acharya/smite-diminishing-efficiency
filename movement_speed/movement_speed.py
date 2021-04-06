@@ -1,3 +1,5 @@
+from item import Item
+
 def d_movement_speed(undiminished_movement_speed):
     # undiminished_movement_speed = sum(movement_speed_list)
     if(undiminished_movement_speed <= 457):
@@ -12,5 +14,6 @@ def undim_ms (base, percent_ms):
     return base + ((base*percent_ms)/100)
 
 def ms_calculator (base, item_list):
-    percent_ms = sum(item.ms for item in item_list)
+    filtered_list = [item for item in item_list if isinstance(item, Item)]
+    percent_ms = sum(item.get_ms() for item in filtered_list)
     return d_movement_speed(undim_ms(base, percent_ms))
